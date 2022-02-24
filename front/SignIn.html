@@ -1,0 +1,39 @@
+<html>
+  <body id="body">
+    <script
+      src="https://code.jquery.com/jquery-3.6.0.min.js"
+      integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+      crossorigin="anonymous"
+    ></script>
+    aggiungi email:
+    <input type="text" id="mail" placeholder="email" />
+    aggiungi password:
+    <input type="password" id="pwd" placeholder="password" /> </br>
+    <a href="index.html">login</a> </br></br>
+    <button id="b1">invia</button>
+    <script>
+      $("#b1").click(function () {
+        var mail = $("#mail").val();
+        var password = $("#pwd").val();
+        if (mail && password) {
+          $.ajax({
+            url:
+              "http://localhost:3000/api/signIn?mail=" +
+              mail +
+              "&password=" +
+              password,
+            method: "GET",
+            success: function (data) {
+              console.log("success", data);
+              $("body").css("background-color","green");
+            },
+            error: function (data) {
+              console.log("error", data);
+              $("body").css("background-color","red");
+            },
+          });
+        }
+      });
+    </script>
+  </body>
+</html>

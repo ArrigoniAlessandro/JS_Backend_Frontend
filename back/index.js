@@ -28,4 +28,25 @@ apiServer.get("/api/login", (req, res) => {
           }
       });
   });
+
+  apiServer.get("/api/signIn", (req, res) => {
+    fs.readFile("users.json", (err, data) => {
+        if(err){
+            res.status(400).json({"message":"signIn fallito"});
+            console.log("errore: " + err);
+        }else{
+            var users = JSON.parse(data);
+            users.push({"mail" : req.query.mail, "password" :  req.query.password});
+            users = JSON.stringify(users,null,3);
+            fs.writeFile("users.json", users, function(err) {
+                if(err) {
+                    res.status(400).json({"message":"signIn fallito"});
+                }
+                res.status(200).json({"message":"signIn effettuato"});
+            });
+            console.log(users);
+        }
+    });
+});
+
   
