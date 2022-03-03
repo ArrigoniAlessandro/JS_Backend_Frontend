@@ -1,39 +1,37 @@
 <html>
-     <h1>Benvenuto nel tuo Frontend</h1>
-    <body>
-        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-        inserire mail:
-        <input type="text" id="mail" placeholder="email" />
-        inserire password:
-        <input type="password" id="psw" placeholder="password" />
-        <button id="b1">invia</button>
-        <a href="SignIn.html">SignIn </a> 
-       
-        <script>
-            $("#b1").click(function(){
-                let mail = $("#mail").val();
-                let psw = $("#psw").val();
-                if (mail && psw) {
-                    console.log($("#mail").val());
-                    console.log($("#psw").val());
-                    $.ajax(
-                        {
-                            url: ("http://localhost:5000/api/login?mail="+mail+"&psw="+psw),
-                            method: "GET",
-                            success: function(data){
-                                console.log("success: ",data)
-                                $("body").attr("style", "background-color: green");
-                            },
-                            error: function(data){
-                                $("body").attr("style", "background-color: red");
-                                console.log("error: ",data)
-                            }
-                        }
-                    )
-                } else {
-                    console.log("nessun valore")  
-                }  
-            });
-        </script>
-    </body>
+  <h1>Benvenuto nel tuo Frontend</h1>
+  <body>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    inserire mail:
+    <input type="text" id="mail" placeholder="email" />
+    inserire password:
+    <input type="password" id="psw" placeholder="password" />
+    <button id="b1">invia</button>
+    <a href="SignIn.html">SignIn </a>
+
+    <script>
+      $("#b1").click(function () {
+        let mail = $("#mail").val();
+        let psw = $("#psw").val();
+        if (mail && psw) {
+          console.log($("#mail").val());
+          console.log($("#psw").val());
+          $.ajax({
+            url: "http://localhost:5000/api/login?mail=" + mail + "&psw=" + psw,
+            method: "GET",
+            success: function (data) {
+              console.log("success: ", data);
+              $("body").attr("style", "background-color: green");
+            },
+            error: function (data) {
+              $("body").attr("style", "background-color: red");
+              console.log("error: ", data);
+            },
+          });
+        } else {
+          console.log("nessun valore");
+        }
+      });
+    </script>
+  </body>
 </html>
