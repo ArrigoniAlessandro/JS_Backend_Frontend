@@ -1,11 +1,17 @@
 var express = require("express");
 var cors = require("cors");
 var fs = require("fs");
+const mysql = require('mysql2');
 var apiServer = express();
 apiServer.use(cors());
 
 var host = "localhost";
 var port = 5000;
+const connection = mysql.createConnection({
+    host: 'arrigoni.alessandro.tave.osdb.it',
+    user: 'c168_arrigoni',
+    database: '	c168_arrigoni'
+  });
 
 apiServer.listen(port, host, ()=>{
     console.log("server ---> http://%s:%d", host, port)
